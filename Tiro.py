@@ -8,6 +8,9 @@ Exercises
 4. Change the speed of the ball.
 
 """
+#Modificado por:
+#Autor Yahir Cortes
+#Fabrizio Gonzales
 
 from random import randrange
 from turtle import *
@@ -30,7 +33,9 @@ def inside(xy):
     return -200 < xy.x < 200 and -200 < xy.y < 200
 
 def draw():
-    "Draw ball and targets."
+    """
+    [Por cada target se dibuja un punto azul y para cuando la pelota esta en el rango se dibuja de color rojo]
+    """
     clear()
 
     for target in targets:
@@ -44,7 +49,11 @@ def draw():
     update()
 
 def move():
-    "Move ball and targets."
+    """
+    [En esta funcion se define el la velicidad con la que retorceden los targets,
+    se hace el efecto parabolico restandole velocidad a la bola en y,
+    se regresa el target si llega al final de la pantalla]
+    """
     if randrange(40) == 0:
         y = randrange(-150, 150)
         target = vector(200, y)
@@ -68,7 +77,9 @@ def move():
 
     for target in targets:
         if not inside(target):
-            return
+            #Si el target no esta en la pantalla se regresa al final en x y su posicion en y se randomiza
+            target.x=200
+            target.y=randrange(-200,201)
 
     ontimer(move, 50)
 
