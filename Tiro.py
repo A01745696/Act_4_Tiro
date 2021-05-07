@@ -21,7 +21,7 @@ speed = vector(0, 0)
 targets = []
 
 def tap(x, y):
-    
+
     """
     [Respond to screen tap]
     :parameter start: [Values of the first click in x and y]
@@ -31,7 +31,8 @@ def tap(x, y):
     if not inside(ball):
         ball.x = -199
         ball.y = -199
-        speed.x = (x + 300) / 25      # Se aumentan los valores sumados a x y y, respectivamente para aumentar la velocidad de la pelota  
+        # Se aumentan los valores sumados a x y y, respectivamente para aumentar la velocidad de la pelota
+        speed.x = (x + 300) / 25
         speed.y = (y + 300) / 25
 
 def inside(xy):
@@ -43,7 +44,9 @@ def inside(xy):
     return -200 < xy.x < 200 and -200 < xy.y < 200
 
 def draw():
-    "Draw ball and targets."
+    """
+    [Por cada target se dibuja un punto azul y para cuando la pelota esta en el rango se dibuja de color rojo]
+    """
     clear()
 
     for target in targets:
@@ -57,7 +60,11 @@ def draw():
     update()
 
 def move():
-    "Move ball and targets."
+    """
+    [En esta funcion se define el la velicidad con la que retorceden los targets,
+    se hace el efecto parabolico restandole velocidad a la bola en y,
+    se regresa el target si llega al final de la pantalla]
+    """
     if randrange(40) == 0:
         y = randrange(-150, 150)
         target = vector(200, y)
@@ -81,7 +88,9 @@ def move():
 
     for target in targets:
         if not inside(target):
-            return
+            #Si el target no esta en la pantalla se regresa al final en x y su posicion en y se randomiza
+            target.x=200
+            target.y=randrange(-200,201)
 
     ontimer(move, 50)
 
