@@ -8,6 +8,9 @@ Exercises
 4. Change the speed of the ball.
 
 """
+#Codigo modificado por:
+#Autor: Yahir Cortes Rodriguez
+#Autor: Fabrizio González Servín
 
 from random import randrange
 from turtle import *
@@ -18,15 +21,25 @@ speed = vector(0, 0)
 targets = []
 
 def tap(x, y):
-    "Respond to screen tap."
+    
+    """
+    [Respond to screen tap]
+    :parameter start: [Values of the first click in x and y]
+    :parameter ends: [Values of the direction and speed in x and y]
+    """
+
     if not inside(ball):
         ball.x = -199
         ball.y = -199
-        speed.x = (x + 200) / 25
-        speed.y = (y + 200) / 25
+        speed.x = (x + 300) / 25      # Se aumentan los valores sumados a x y y, respectivamente para aumentar la velocidad de la pelota  
+        speed.y = (y + 300) / 25
 
 def inside(xy):
-    "Return True if xy within screen."
+    """
+    [Return True if xy within screen]
+    :parameter start: [Values of the first click in x and y]
+    :parameter ends: [True or False]
+    """
     return -200 < xy.x < 200 and -200 < xy.y < 200
 
 def draw():
@@ -51,7 +64,7 @@ def move():
         targets.append(target)
 
     for target in targets:
-        target.x -= 0.5
+        target.x -= 1.8         # Se aumenta el valor para aumentar la velocidad de los balones
 
     if inside(ball):
         speed.y -= 0.35
